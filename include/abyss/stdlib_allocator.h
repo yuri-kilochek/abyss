@@ -1,0 +1,15 @@
+#ifndef ABYSS_INCLUDE_STDLIB_ALLOCATOR_H
+#define ABYSS_INCLUDE_STDLIB_ALLOCATOR_H
+
+#include <abyss/detail/api.h>
+#include <abyss/allocator.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+ABYSS_DETAIL_API
+abyss_allocator *
+abyss_get_stdlib_allocator(void);
+
+///////////////////////////////////////////////////////////////////////////////
+
+#endif

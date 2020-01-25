@@ -1,0 +1,8 @@
+#include <abyss/version.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+abyss_version
+abyss_get_linked_version(void) {
+    return ABYSS_INCLUDED_VERSION;
+}

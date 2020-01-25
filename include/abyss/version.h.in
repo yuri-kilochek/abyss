@@ -1,0 +1,37 @@
+#ifndef ABYSS_INCLUDE_VERSION_H
+#define ABYSS_INCLUDE_VERSION_H
+
+#include <abyss/detail/api.h>
+
+#include <stdint.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+typedef uint_least32_t abyss_version;
+
+#define ABYSS_COMPOSE_VERSION(major, minor, patch) \
+    (((major) & UINT32_C(0xFFF)) << UINT32_C(20) | \
+     ((minor) & UINT32_C(0x3FF)) << UINT32_C(10) | \
+     ((patch) & UINT32_C(0x3FF)))
+
+#define ABYSS_GET_MAJOR_VERSION(version) \
+    (((version) >> UINT32_C(20)) & UINT32_C(0xFFF))
+
+#define ABYSS_GET_MINOR_VERSION(version) \
+    (((version) >> UINT32_C(10)) & UINT32_C(0x3FF))
+
+#define ABYSS_GET_PATCH_VERSION(version) \
+    ((version) & UINT32_C(0x3FF))
+
+#define ABYSS_INCLUDED_VERSION \
+    ABYSS_COMPOSE_VERSION(${MAJOR_VERSION}, \
+                          ${MINOR_VERSION}, \
+                          ${PATCH_VERSION})
+
+ABYSS_DETAIL_API
+abyss_version
+abyss_get_linked_version(void);
+
+///////////////////////////////////////////////////////////////////////////////
+
+#endif
