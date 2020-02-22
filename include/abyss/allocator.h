@@ -1,39 +1,49 @@
-#ifndef ABYSS_INCLUDE_ALLOCATOR_H
-#define ABYSS_INCLUDE_ALLOCATOR_H
+#ifndef ABYSS_INCLUDE_GUARD_ALLOCATOR_H
+#define ABYSS_INCLUDE_GUARD_ALLOCATOR_H
 
+#include <abyss/detail/extern_c.h>
 #include <abyss/error.h>
 
 #include <stddef.h>
 
+ABYSS_DETAIL_EXTERN_C_BEGIN
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef struct abyss_allocator_type {
-    abyss_error
-    (*const allocate)(void *allocator,
-                      size_t size, size_t alignment,
-                      void **pointer_out);
+typedef struct abyss_allocator abyss_allocator_t;
+typedef struct abyss_allocator_type abyss_allocator_type_t;
 
-    void
-    (*const deallocate)(void *allocator,
-                        size_t size, size_t alignment, void *pointer);
-} abyss_allocator_type;
+struct abyss_allocator {
+    void const *const type;
+};
 
-typedef struct abyss_allocator {
-    abyss_allocator_type *const type;
-} abyss_allocator;
+struct abyss_allocator_type {
+    abyss_error_t (*allocate)(abyss_allocator_t *allocator,
+                              void **ptr_out, size_t size, size_t alignment);
 
-static inline
-abyss_error
-abyss_allocate(abyss_allocator *allocator,
-               size_t size, size_t alignment, void **pointer_out)
-{ return allocator->type->allocate(allocator, size, alignment, pointer_out); }
+    void (*deallocate)(abyss_allocator_t *allocator,
+                       void *ptr, size_t size, size_t alignment);
+};
 
 static inline
-void
-abyss_deallocate(abyss_allocator *allocator,
-                 size_t size, size_t alignment, void *pointer)
-{ return allocator->type->deallocate(allocator, size, alignment, pointer); }
+abyss_error_t abyss_allocator_allocate(abyss_allocator_t *allocator,
+                                       void **ptr_out,
+                                       size_t size, size_t alignment)
+{
+    typedef abyss_allocator_type_t type_t;
+    type_t const *type = (type_t const *) allocator->type;
+    return type->allocate(allocator, ptr_out, size, alignment);
+}
+
+static inline
+void abyss_allocator_deallocate(abyss_allocator_t *allocator,
+                                void *ptr, size_t size, size_t alignment)
+{
+    typedef abyss_allocator_type_t type_t;
+    type_t const *type = (type_t const *) allocator->type;
+    type->deallocate(allocator, ptr, size, alignment);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
+ABYSS_DETAIL_EXTERN_C_END
 
 #endif

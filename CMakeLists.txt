@@ -18,11 +18,11 @@ if("${BUILD_SHARED_LIBS}")
     )
 endif()
 
-set(MAJOR_VERSION ${PROJECT_VERSION_MAJOR})
-set(MINOR_VERSION ${PROJECT_VERSION_MINOR})
-set(PATCH_VERSION ${PROJECT_VERSION_PATCH})
-configure_file("include/abyss/version.h.in" 
-               "include/abyss/version.h")
+set(VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(VERSION_PATCH ${PROJECT_VERSION_PATCH})
+configure_file("include/abyss/included_version.h.in" 
+               "include/abyss/included_version.h")
 
 target_include_directories(abyss PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
@@ -30,9 +30,9 @@ target_include_directories(abyss PUBLIC
 )
 
 target_sources(abyss PRIVATE
-    src/version.c
+    src/linked_version.c
     src/error.c
-    src/stdlib_allocator.c
+    src/std_allocator.c
 )
 
 
