@@ -10,16 +10,20 @@
 ABYSS_DETAIL_EXTERN_C_BEGIN
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef struct abyss_time abyss_timer_t;
+typedef struct abyss_timer abyss_timer_t;
 typedef struct abyss_timer_type abyss_timer_type_t;
-typedef struct abyss_timer_provider abyss_timer_provider_t;
-typedef struct abyss_timer_provider_type abyss_timer_provider_type_t;
+typedef struct abyss_timer_factory abyss_timer_factory_t;
+typedef struct abyss_timer_factory_type abyss_timer_factory_type_t;
 
 struct abyss_timer {
     void const *const type;
+
+    abyss_allocator_t *const allocator;
 };
 
 struct abyss_timer_type {
+    void (*release)(abyss_timer_t *timer);
+
     void (*wait)(abyss_timer_t *timer,
                  abyss_nanoseconds_t duration,
                  abyss_allocator_t *allocator,
@@ -29,6 +33,13 @@ struct abyss_timer_type {
 
     void (*interrupt)(abyss_timer_t *timer);
 };
+
+static inline
+void abyss_timer_release(abyss_timer_t *timer) {
+    typedef abyss_timer_type_t type_t;
+    type_t const *type = (type_t const *) timer->type;
+    type->release(timer);
+}
 
 static inline
 void abyss_timer_wait(abyss_timer_t *timer,
@@ -50,39 +61,24 @@ void abyss_timer_interrupt(abyss_timer_t *timer) {
     type->interrupt(timer);
 }
 
-struct abyss_timer_provider {
+struct abyss_timer_factory {
     void const *const type;
 };
 
-struct abyss_timer_provider_type {
-    abyss_error_t (*acquire)(abyss_timer_provider_t *provider,
-                             abyss_timer_t **timer_out,
-                             abyss_dispatcher_t *dispatcher,
-                             abyss_allocator_t *allocator);
-
-    void (*release)(abyss_timer_provider_t *provider,
-                    abyss_timer_t *timer,
-                    abyss_allocator_t *allocator);
+struct abyss_timer_factory_type {
+    abyss_error_t (*create)(abyss_timer_factory_t *factory,
+                            abyss_allocator_t *allocator,
+                            abyss_timer_t **timer_out);
 };
 
 static inline
-abyss_error_t abyss_timer_acquire(abyss_timer_provider_t *provider,
-                                  abyss_timer_t **timer_out,
-                                  abyss_allocator_t *allocator)
+abyss_error_t abyss_timer_create(abyss_timer_factory_t *factory,
+                                 abyss_allocator_t *allocator,
+                                 abyss_timer_t **timer_out)
 {
-    typedef abyss_timer_provider_type_t type_t;
-    type_t const *type = (type_t const *) provider->type;
-    return type->acquire(provider, timer_out, allocator);
-}
-
-static inline
-void abyss_timer_release(abyss_timer_provider_t *provider,
-                         abyss_timer_t *timer,
-                         abyss_allocator *allocator)
-{
-    typedef abyss_timer_provider_type_t type_t;
-    type_t const *type = (type_t const *) provider->type;
-    type->release(provider, timer, allocator);
+    typedef abyss_timer_factory_type_t type_t;
+    type_t const *type = (type_t const *) factory->type;
+    return type->create(factory, allocator, timer_out);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

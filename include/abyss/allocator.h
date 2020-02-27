@@ -18,7 +18,7 @@ struct abyss_allocator {
 
 struct abyss_allocator_type {
     abyss_error_t (*allocate)(abyss_allocator_t *allocator,
-                              void **ptr_out, size_t size, size_t alignment);
+                              size_t size, size_t alignment, void **ptr_out);
 
     void (*deallocate)(abyss_allocator_t *allocator,
                        void *ptr, size_t size, size_t alignment);
@@ -26,12 +26,12 @@ struct abyss_allocator_type {
 
 static inline
 abyss_error_t abyss_allocator_allocate(abyss_allocator_t *allocator,
-                                       void **ptr_out,
-                                       size_t size, size_t alignment)
+                                       size_t size, size_t alignment,
+                                       void **ptr_out)
 {
     typedef abyss_allocator_type_t type_t;
     type_t const *type = (type_t const *) allocator->type;
-    return type->allocate(allocator, ptr_out, size, alignment);
+    return type->allocate(allocator, size, alignment, ptr_out);
 }
 
 static inline

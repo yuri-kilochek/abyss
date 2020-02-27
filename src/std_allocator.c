@@ -6,8 +6,8 @@
 
 static
 abyss_error_t abyss_std_allocator_allocate(abyss_allocator_t *allocator,
-                                           void **ptr_out,
-                                           size_t size, size_t alignment)
+                                           size_t size, size_t alignment,
+                                           void **ptr_out)
 {
     (void)allocator;
 
