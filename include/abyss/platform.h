@@ -5,6 +5,7 @@
 #include <abyss/allocator.h>
 #include <abyss/dispatcher.h>
 #include <abyss/worker.h>
+#include <abyss/randomizer.h>
 #include <abyss/strand.h>
 #include <abyss/timer.h>
 
@@ -20,6 +21,7 @@ struct abyss_platform {
     abyss_allocator_t *const allocator;
     abyss_dispatcher_t *const dispatcher;
     abyss_worker_t *const worker;
+    abyss_randomizer_t *const randomizer;
 };
 
 struct abyss_platform_type {
