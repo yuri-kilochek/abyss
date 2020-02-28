@@ -21,8 +21,8 @@ endif()
 set(VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(VERSION_PATCH ${PROJECT_VERSION_PATCH})
-configure_file("include/abyss/included_version.h.in" 
-               "include/abyss/included_version.h")
+configure_file("include/abyss/version.h.in" 
+               "include/abyss/version.h")
 
 target_include_directories(abyss PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
@@ -30,7 +30,7 @@ target_include_directories(abyss PUBLIC
 )
 
 target_sources(abyss PRIVATE
-    src/linked_version.c
+    src/version.c
     src/error.c
     src/symbol.c
     src/std_allocator.c
