@@ -36,7 +36,8 @@ void abyss_worker_work(abyss_worker_t *worker,
     typedef abyss_worker_type_t type_t;
     type_t const *type = (type_t const *) worker->type;
     type->work(worker,
-               work, work_context, allocator, dispatcher, handler, context);
+               work, work_context,
+               allocator, dispatcher, handler, context);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
