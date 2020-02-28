@@ -12,8 +12,6 @@ ABYSS_DETAIL_EXTERN_C_BEGIN
 
 typedef struct abyss_timer abyss_timer_t;
 typedef struct abyss_timer_type abyss_timer_type_t;
-typedef struct abyss_timer_factory abyss_timer_factory_t;
-typedef struct abyss_timer_factory_type abyss_timer_factory_type_t;
 
 struct abyss_timer {
     void const *const type;
@@ -59,26 +57,6 @@ void abyss_timer_interrupt(abyss_timer_t *timer) {
     typedef abyss_timer_type_t type_t;
     type_t const *type = (type_t const *) timer->type;
     type->interrupt(timer);
-}
-
-struct abyss_timer_factory {
-    void const *const type;
-};
-
-struct abyss_timer_factory_type {
-    abyss_error_t (*create)(abyss_timer_factory_t *factory,
-                            abyss_allocator_t *allocator,
-                            abyss_timer_t **timer_out);
-};
-
-static inline
-abyss_error_t abyss_timer_create(abyss_timer_factory_t *factory,
-                                 abyss_allocator_t *allocator,
-                                 abyss_timer_t **timer_out)
-{
-    typedef abyss_timer_factory_type_t type_t;
-    type_t const *type = (type_t const *) factory->type;
-    return type->create(factory, allocator, timer_out);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
