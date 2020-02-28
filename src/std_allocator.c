@@ -9,7 +9,7 @@ abyss_error_t abyss_std_allocator_allocate(abyss_allocator_t *allocator,
                                            size_t size, size_t alignment,
                                            void **ptr_out)
 {
-    (void)allocator;
+    (void) allocator;
 
     if (size == 0) {
         *ptr_out = NULL;
@@ -29,9 +29,9 @@ static
 void abyss_std_allocator_deallocate(abyss_allocator_t *allocator,
                                     void *ptr, size_t size, size_t alignment)
 {
-    (void)allocator;
-    (void)size;
-    (void)alignment;
+    (void) allocator;
+    (void) size;
+    (void) alignment;
 
     free(ptr);
 }
