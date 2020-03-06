@@ -2,9 +2,7 @@
 #define ABYSS_INCLUDE_GUARD_RANDOMIZER_H
 
 #include <abyss/detail/extern_c.h>
-#include <abyss/error.h>
-#include <abyss/allocator.h>
-#include <abyss/dispatcher.h>
+#include <abyss/handler.h>
 
 #include <stddef.h>
 
@@ -19,37 +17,23 @@ struct abyss_randomizer {
 };
 
 struct abyss_randomizer_type {
-    void (*randomize)(abyss_randomizer_t *randomizer,
+    void (*get_bytes)(abyss_randomizer_t *randomizer,
                       size_t byte_count, unsigned char *bytes,
-                      abyss_allocator_t *allocator,
-                      abyss_dispatcher_t *dispatcher,
-                      void (*handler)(void *context, abyss_error_t error),
-                      void *context);
-
-    void (*interrupt)(abyss_randomizer_t *randomizer);
+                      abyss_handler_t complete_handler,
+                      abyss_handler_t *cancel_handler_ptr);
 };
 
 static inline
-void abyss_randomizer_randomize(abyss_randomizer_t *randomizer,
+void abyss_randomizer_get_bytes(abyss_randomizer_t *randomizer,
                                 size_t byte_count, unsigned char *bytes,
-                                abyss_allocator_t *allocator,
-                                abyss_dispatcher_t *dispatcher,
-                                void (*handler)(void *context,
-                                                abyss_error_t error),
-                                void *context)
+                                abyss_handler_t complete_handler,
+                                abyss_handler_t *cancel_handler_ptr)
 {
     typedef abyss_randomizer_type_t type_t;
     type_t const *type = (type_t const *) randomizer->type;
-    type->randomize(randomizer,
+    type->get_bytes(randomizer,
                     byte_count, bytes,
-                    allocator, dispatcher, handler, context);
-}
-
-static inline
-void abyss_randomizer_interrupt(abyss_randomizer_t *randomizer) {
-    typedef abyss_randomizer_type_t type_t;
-    type_t const *type = (type_t const *) randomizer->type;
-    type->interrupt(randomizer);
+                    complete_handler, cancel_handler_ptr);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -21,39 +21,26 @@ struct abyss_platform {
     abyss_allocator_t *const allocator;
     abyss_dispatcher_t *const dispatcher;
     abyss_worker_t *const worker;
+    abyss_timer_t *const timer;
     abyss_randomizer_t *const randomizer;
 };
 
 struct abyss_platform_type {
     abyss_error_t (*create_strand)(abyss_platform_t *platform,
+                                   abyss_strand_t **strand_out,
                                    abyss_allocator_t *allocator,
-                                   abyss_dispatcher_t *dispatcher,
-                                   abyss_strand_t **strand_out);
-
-    abyss_error_t (*create_timer)(abyss_platform_t *platform,
-                                  abyss_allocator_t *allocator,
-                                  abyss_timer_t **timer_out);
+                                   abyss_dispatcher_t *dispatcher);
 };
 
 static inline
 abyss_error_t abyss_platform_create_strand(abyss_platform_t *platform,
+                                           abyss_strand_t **strand_out,
                                            abyss_allocator_t *allocator,
-                                           abyss_dispatcher_t *dispatcher,
-                                           abyss_strand_t **strand_out)
+                                           abyss_dispatcher_t *dispatcher)
 {
     typedef abyss_platform_type_t type_t;
     type_t const *type = (type_t const *) platform->type;
-    return type->create_strand(platform, allocator, dispatcher, strand_out);
-}
-
-static inline
-abyss_error_t abyss_platform_create_timer(abyss_platform_t *platform,
-                                          abyss_allocator_t *allocator,
-                                          abyss_timer_t **timer_out)
-{
-    typedef abyss_platform_type_t type_t;
-    type_t const *type = (type_t const *) platform->type;
-    return type->create_timer(platform, allocator, timer_out);
+    return type->create_strand(platform, strand_out, allocator, dispatcher);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

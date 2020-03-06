@@ -2,9 +2,8 @@
 #define ABYSS_INCLUDE_GUARD_WORKER_H
 
 #include <abyss/detail/extern_c.h>
-#include <abyss/error.h>
-#include <abyss/allocator.h>
-#include <abyss/dispatcher.h>
+#include <abyss/work.h>
+#include <abyss/handler.h>
 
 ABYSS_DETAIL_EXTERN_C_BEGIN
 ///////////////////////////////////////////////////////////////////////////////
@@ -17,27 +16,21 @@ struct abyss_worker {
 };
 
 struct abyss_worker_type {
-    void (*work)(abyss_worker_t *worker,
-                 void (*work)(void *context), void *work_context,
-                 abyss_allocator_t *allocator,
-                 abyss_dispatcher_t *dispatcher,
-                 void (*handler)(void *context, abyss_error_t error),
-                 void *context);
+    void (*submit)(abyss_worker_t *worker,
+                   abyss_work_t work,
+                   abyss_handler_t complete_handler,
+                   abyss_handler_t *cancel_handler_ptr);
 };
 
 static inline
-void abyss_worker_work(abyss_worker_t *worker,
-                       void (*work)(void *context), void *work_context,
-                       abyss_allocator_t *allocator,
-                       abyss_dispatcher_t *dispatcher,
-                       void (*handler)(void *context, abyss_error_t error),
-                       void *context)
-{ 
+void abyss_worker_submit(abyss_worker_t *worker,
+                         abyss_work_t work,
+                         abyss_handler_t complete_handler,
+                         abyss_handler_t *cancel_handler_ptr)
+{
     typedef abyss_worker_type_t type_t;
     type_t const *type = (type_t const *) worker->type;
-    type->work(worker,
-               work, work_context,
-               allocator, dispatcher, handler, context);
+    type->submit(worker, work, complete_handler, cancel_handler_ptr);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -10,8 +10,8 @@ char const *abyss_error_get_name(abyss_error_t error) {
         return "none";
     case ABYSS_ERROR_UNKNOWN:
         return "unknown";
-    case ABYSS_ERROR_INTERRUPTED:
-        return "interrupted";
+    case ABYSS_ERROR_CANCELLED:
+        return "cancelled";
     case ABYSS_ERROR_OUT_OF_MEMORY:
         return "out of memory";
     case ABYSS_DETAIL_ERROR_STRUT:

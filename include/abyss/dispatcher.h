@@ -2,8 +2,7 @@
 #define ABYSS_INCLUDE_GUARD_DISPATCHER_H
 
 #include <abyss/detail/extern_c.h>
-#include <abyss/error.h>
-#include <abyss/allocator.h>
+#include <abyss/handler.h>
 
 ABYSS_DETAIL_EXTERN_C_BEGIN
 ///////////////////////////////////////////////////////////////////////////////
@@ -16,22 +15,16 @@ struct abyss_dispatcher {
 };
 
 struct abyss_dispatcher_type {
-    void (*dispatch)(abyss_dispatcher_t *dispatcher,
-                     abyss_allocator_t *allocator,
-                     void (*handler)(void *context, abyss_error_t error),
-                     void *context);
+    void (*submit)(abyss_dispatcher_t *dispatcher, abyss_handler_t handler);
 };
 
 static inline
-void abyss_dispatcher_dispatch(abyss_dispatcher_t *dispatcher,
-                               abyss_allocator_t *allocator,
-                               void (*handler)(void *context,
-                                               abyss_error_t error),
-                               void *context)
+void abyss_dispatcher_submit(abyss_dispatcher_t *dispatcher,
+                             abyss_handler_t handler)
 { 
     typedef abyss_dispatcher_type_t type_t;
     type_t const *type = (type_t const *) dispatcher->type;
-    type->dispatch(dispatcher, allocator, handler, context);
+    type->submit(dispatcher, handler);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
