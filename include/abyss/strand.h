@@ -6,7 +6,7 @@
 
 #include <stddef.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_strand abyss_strand_t;
@@ -37,6 +37,6 @@ void abyss_strand_release(abyss_strand_t **strand_ptr) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

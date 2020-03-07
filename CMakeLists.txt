@@ -13,8 +13,8 @@ set_target_properties(abyss PROPERTIES VERSION ${PROJECT_VERSION})
 if("${BUILD_SHARED_LIBS}")
     set_target_properties(abyss PROPERTIES C_VISIBILITY_PRESET hidden)
     target_compile_definitions(abyss
-        PRIVATE ABYSS_DETAIL_BUILD_DYNAMIC=1
-        INTERFACE ABYSS_DETAIL_USE_DYNAMIC=1
+        PRIVATE ABYSS_IMPL_BUILD_DYNAMIC=1
+        INTERFACE ABYSS_IMPL_USE_DYNAMIC=1
     )
 endif()
 

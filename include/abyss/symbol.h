@@ -1,19 +1,19 @@
 #ifndef ABYSS_INCLUDE_GUARD_SYMBOL_H
 #define ABYSS_INCLUDE_GUARD_SYMBOL_H
 
-#include <abyss/detail/api.h>
-#include <abyss/detail/align_as.h>
+#include <abyss/impl/api.h>
+#include <abyss/impl/align_as.h>
 
 #include <stdint.h>
 #include <string.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_symbol abyss_symbol_t;
 
 struct abyss_symbol {
-    ABYSS_DETAIL_ALIGN_AS(16)
+    ABYSS_IMPL_ALIGN_AS(16)
     unsigned char bytes[16];
 };
 
@@ -25,10 +25,10 @@ int_fast8_t abyss_symbol_compare(abyss_symbol_t a, abyss_symbol_t b) {
     return 0;
 }
 
-ABYSS_DETAIL_API
+ABYSS_IMPL_API
 size_t abyss_symbol_hash(abyss_symbol_t symbol);
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

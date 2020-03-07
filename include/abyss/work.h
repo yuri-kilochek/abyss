@@ -1,7 +1,7 @@
 #ifndef ABYSS_INCLUDE_GUARD_WORK_H
 #define ABYSS_INCLUDE_GUARD_WORK_H
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_work abyss_work_t;
@@ -17,6 +17,6 @@ void abyss_work_do(abyss_work_t work) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

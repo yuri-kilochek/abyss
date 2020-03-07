@@ -5,7 +5,7 @@
 
 #include <stddef.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_allocator abyss_allocator_t;
@@ -44,6 +44,6 @@ void abyss_allocator_deallocate(abyss_allocator_t *allocator,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

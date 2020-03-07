@@ -8,7 +8,7 @@
 #include <abyss/strand.h>
 #include <abyss/timer.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_platform abyss_platform_t;
@@ -43,6 +43,6 @@ abyss_error_t abyss_platform_create_strand(abyss_platform_t *platform,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

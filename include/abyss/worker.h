@@ -4,7 +4,7 @@
 #include <abyss/work.h>
 #include <abyss/handler.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_worker abyss_worker_t;
@@ -33,6 +33,6 @@ void abyss_worker_submit(abyss_worker_t *worker,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

@@ -5,7 +5,7 @@
 
 #include <stddef.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_randomizer abyss_randomizer_t;
@@ -36,6 +36,6 @@ void abyss_randomizer_get_bytes(abyss_randomizer_t *randomizer,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

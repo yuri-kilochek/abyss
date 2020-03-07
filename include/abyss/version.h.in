@@ -1,11 +1,11 @@
 #ifndef ABYSS_INCLUDE_GUARD_VERSION_H
 #define ABYSS_INCLUDE_GUARD_VERSION_H
 
-#include <abyss/detail/api.h>
+#include <abyss/impl/api.h>
 
 #include <stdint.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef uint_least32_t abyss_version_t;
@@ -27,10 +27,10 @@ typedef uint_least32_t abyss_version_t;
 #define ABYSS_INCLUDED_VERSION \
     ABYSS_COMPOSE_VERSION(${VERSION_MAJOR}, ${VERSION_MINOR}, ${VERSION_PATCH})
 
-ABYSS_DETAIL_API
+ABYSS_IMPL_API
 abyss_version_t abyss_get_linked_version(void);
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

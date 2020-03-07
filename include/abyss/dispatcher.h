@@ -3,7 +3,7 @@
 
 #include <abyss/handler.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_dispatcher abyss_dispatcher_t;
@@ -27,6 +27,6 @@ void abyss_dispatcher_submit(abyss_dispatcher_t *dispatcher,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

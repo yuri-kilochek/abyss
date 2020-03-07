@@ -4,7 +4,7 @@
 #include <abyss/nanoseconds.h>
 #include <abyss/handler.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_timer abyss_timer_t;
@@ -33,6 +33,6 @@ void abyss_timer_wait(abyss_timer_t *timer,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

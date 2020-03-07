@@ -6,7 +6,7 @@
 
 #include <stddef.h>
 
-#include <abyss/detail/prolog.h>
+#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_handler abyss_handler_t;
@@ -27,6 +27,6 @@ void abyss_handler_invoke(abyss_handler_t *handler_ptr, abyss_error_t error) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/detail/epilog.h>
+#include <abyss/impl/epilog.h>
 
 #endif

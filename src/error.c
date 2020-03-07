@@ -14,7 +14,7 @@ char const *abyss_error_get_name(abyss_error_t error) {
         return "cancelled";
     case ABYSS_ERROR_OUT_OF_MEMORY:
         return "out of memory";
-    case ABYSS_DETAIL_ERROR_STRUT:
+    case ABYSS_IMPL_ERROR_STRUT:
         break;
     }
     return NULL;
