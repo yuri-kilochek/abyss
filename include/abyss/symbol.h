@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_SYMBOL_H
-#define ABYSS_INCLUDE_GUARD_SYMBOL_H
+#ifndef ABYSS_IMPL_INCL_SYMBOL_H
+#define ABYSS_IMPL_INCL_SYMBOL_H
 
 #include <abyss/impl/api.h>
 #include <abyss/impl/align_as.h>

@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_STRAND_H
-#define ABYSS_INCLUDE_GUARD_STRAND_H
+#ifndef ABYSS_IMPL_INCL_STRAND_H
+#define ABYSS_IMPL_INCL_STRAND_H
 
 #include <abyss/dispatcher.h>
 #include <abyss/allocator.h>

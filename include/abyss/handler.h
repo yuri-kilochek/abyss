@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_HANDLER_H
-#define ABYSS_INCLUDE_GUARD_HANDLER_H
+#ifndef ABYSS_IMPL_INCL_HANDLER_H
+#define ABYSS_IMPL_INCL_HANDLER_H
 
 #include <abyss/allocator.h>
 #include <abyss/error.h>

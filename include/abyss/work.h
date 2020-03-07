@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_WORK_H
-#define ABYSS_INCLUDE_GUARD_WORK_H
+#ifndef ABYSS_IMPL_INCL_WORK_H
+#define ABYSS_IMPL_INCL_WORK_H
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////

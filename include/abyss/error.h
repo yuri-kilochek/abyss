@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_ERROR_H
-#define ABYSS_INCLUDE_GUARD_ERROR_H
+#ifndef ABYSS_IMPL_INCL_ERROR_H
+#define ABYSS_IMPL_INCL_ERROR_H
 
 #include <abyss/impl/api.h>
 

@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_PLATFORM_H
-#define ABYSS_INCLUDE_GUARD_PLATFORM_H
+#ifndef ABYSS_IMPL_INCL_PLATFORM_H
+#define ABYSS_IMPL_INCL_PLATFORM_H
 
 #include <abyss/allocator.h>
 #include <abyss/dispatcher.h>

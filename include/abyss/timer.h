@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_TIMER_H
-#define ABYSS_INCLUDE_GUARD_TIMER_H
+#ifndef ABYSS_IMPL_INCL_TIMER_H
+#define ABYSS_IMPL_INCL_TIMER_H
 
 #include <abyss/nanoseconds.h>
 #include <abyss/handler.h>

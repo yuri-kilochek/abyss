@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_IMPL_API_H
-#define ABYSS_INCLUDE_GUARD_IMPL_API_H
+#ifndef ABYSS_IMPL_INCL_IMPL_API_H
+#define ABYSS_IMPL_INCL_IMPL_API_H
 
 #include <abyss/impl/os.h>
 

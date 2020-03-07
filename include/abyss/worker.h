@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_WORKER_H
-#define ABYSS_INCLUDE_GUARD_WORKER_H
+#ifndef ABYSS_IMPL_INCL_WORKER_H
+#define ABYSS_IMPL_INCL_WORKER_H
 
 #include <abyss/work.h>
 #include <abyss/handler.h>

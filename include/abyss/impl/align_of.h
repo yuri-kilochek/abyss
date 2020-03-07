@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_ALIGN_OF_H
-#define ABYSS_INCLUDE_GUARD_ALIGN_OF_H
+#ifndef ABYSS_IMPL_INCL_ALIGN_OF_H
+#define ABYSS_IMPL_INCL_ALIGN_OF_H
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////

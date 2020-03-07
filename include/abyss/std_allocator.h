@@ -1,5 +1,5 @@
-#ifndef ABYSS_INCLUDE_GUARD_STD_ALLOCATOR_H
-#define ABYSS_INCLUDE_GUARD_STD_ALLOCATOR_H
+#ifndef ABYSS_IMPL_INCL_STD_ALLOCATOR_H
+#define ABYSS_IMPL_INCL_STD_ALLOCATOR_H
 
 #include <abyss/impl/api.h>
 #include <abyss/allocator.h>
