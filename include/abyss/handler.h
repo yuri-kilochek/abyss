@@ -18,11 +18,13 @@ struct abyss_handler {
     void *context;
 };
 
+#define ABYSS_NULL_HANDLER (abyss_handler_t) {0}
+
 static inline
 void abyss_handler_invoke(abyss_handler_t *handler_ptr, abyss_error_t error) {
     if (!handler_ptr->function) { return; }
     handler_ptr->function(handler_ptr->context, error);
-    handler_ptr->function = NULL;
+    *handler_ptr = ABYSS_NULL_HANDLER;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
