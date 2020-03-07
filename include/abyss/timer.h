@@ -1,11 +1,10 @@
 #ifndef ABYSS_INCLUDE_GUARD_TIMER_H
 #define ABYSS_INCLUDE_GUARD_TIMER_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/nanoseconds.h>
 #include <abyss/handler.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_timer abyss_timer_t;
@@ -34,6 +33,6 @@ void abyss_timer_wait(abyss_timer_t *timer,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

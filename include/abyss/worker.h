@@ -1,11 +1,10 @@
 #ifndef ABYSS_INCLUDE_GUARD_WORKER_H
 #define ABYSS_INCLUDE_GUARD_WORKER_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/work.h>
 #include <abyss/handler.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_worker abyss_worker_t;
@@ -34,6 +33,6 @@ void abyss_worker_submit(abyss_worker_t *worker,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

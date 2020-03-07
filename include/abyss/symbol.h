@@ -1,14 +1,13 @@
 #ifndef ABYSS_INCLUDE_GUARD_SYMBOL_H
 #define ABYSS_INCLUDE_GUARD_SYMBOL_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/detail/api.h>
 #include <abyss/detail/align_as.h>
 
 #include <stdint.h>
 #include <string.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_symbol abyss_symbol_t;
@@ -30,6 +29,6 @@ ABYSS_DETAIL_API
 size_t abyss_symbol_hash(abyss_symbol_t symbol);
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

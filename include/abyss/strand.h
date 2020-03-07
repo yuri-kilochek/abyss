@@ -1,13 +1,12 @@
 #ifndef ABYSS_INCLUDE_GUARD_STRAND_H
 #define ABYSS_INCLUDE_GUARD_STRAND_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/dispatcher.h>
 #include <abyss/allocator.h>
 
 #include <stddef.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_strand abyss_strand_t;
@@ -38,6 +37,6 @@ void abyss_strand_release(abyss_strand_t **strand_ptr) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

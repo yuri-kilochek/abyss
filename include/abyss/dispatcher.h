@@ -1,10 +1,9 @@
 #ifndef ABYSS_INCLUDE_GUARD_DISPATCHER_H
 #define ABYSS_INCLUDE_GUARD_DISPATCHER_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/handler.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_dispatcher abyss_dispatcher_t;
@@ -28,6 +27,6 @@ void abyss_dispatcher_submit(abyss_dispatcher_t *dispatcher,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

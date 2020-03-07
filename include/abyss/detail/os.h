@@ -1,6 +1,7 @@
 #ifndef ABYSS_INCLUDE_GUARD_DETAIL_OS_H
 #define ABYSS_INCLUDE_GUARD_DETAIL_OS_H
 
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 #if defined(_WIN32) \
@@ -12,5 +13,6 @@
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
+#include <abyss/detail/epilog.h>
 
 #endif

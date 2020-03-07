@@ -1,12 +1,11 @@
 #ifndef ABYSS_INCLUDE_GUARD_ERROR_H
 #define ABYSS_INCLUDE_GUARD_ERROR_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/detail/api.h>
 
 #include <stdint.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef enum abyss_error {
@@ -29,6 +28,6 @@ ABYSS_DETAIL_API
 char const *abyss_error_get_name(abyss_error_t error);
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

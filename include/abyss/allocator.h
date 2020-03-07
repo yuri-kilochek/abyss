@@ -1,12 +1,11 @@
 #ifndef ABYSS_INCLUDE_GUARD_ALLOCATOR_H
 #define ABYSS_INCLUDE_GUARD_ALLOCATOR_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/error.h>
 
 #include <stddef.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_allocator abyss_allocator_t;
@@ -45,6 +44,6 @@ void abyss_allocator_deallocate(abyss_allocator_t *allocator,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

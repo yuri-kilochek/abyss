@@ -1,13 +1,12 @@
 #ifndef ABYSS_INCLUDE_GUARD_HANDLER_H
 #define ABYSS_INCLUDE_GUARD_HANDLER_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/allocator.h>
 #include <abyss/error.h>
 
 #include <stddef.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_handler abyss_handler_t;
@@ -28,6 +27,6 @@ void abyss_handler_invoke(abyss_handler_t *handler_ptr, abyss_error_t error) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

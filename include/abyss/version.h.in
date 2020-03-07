@@ -1,12 +1,11 @@
 #ifndef ABYSS_INCLUDE_GUARD_VERSION_H
 #define ABYSS_INCLUDE_GUARD_VERSION_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/detail/api.h>
 
 #include <stdint.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef uint_least32_t abyss_version_t;
@@ -32,6 +31,6 @@ ABYSS_DETAIL_API
 abyss_version_t abyss_get_linked_version(void);
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

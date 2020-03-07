@@ -1,12 +1,11 @@
 #ifndef ABYSS_INCLUDE_GUARD_RANDOMIZER_H
 #define ABYSS_INCLUDE_GUARD_RANDOMIZER_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/handler.h>
 
 #include <stddef.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_randomizer abyss_randomizer_t;
@@ -37,6 +36,6 @@ void abyss_randomizer_get_bytes(abyss_randomizer_t *randomizer,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif

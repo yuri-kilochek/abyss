@@ -1,7 +1,6 @@
 #ifndef ABYSS_INCLUDE_GUARD_PLATFORM_H
 #define ABYSS_INCLUDE_GUARD_PLATFORM_H
 
-#include <abyss/detail/extern_c.h>
 #include <abyss/allocator.h>
 #include <abyss/dispatcher.h>
 #include <abyss/worker.h>
@@ -9,7 +8,7 @@
 #include <abyss/strand.h>
 #include <abyss/timer.h>
 
-ABYSS_DETAIL_EXTERN_C_BEGIN
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_platform abyss_platform_t;
@@ -44,6 +43,6 @@ abyss_error_t abyss_platform_create_strand(abyss_platform_t *platform,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-ABYSS_DETAIL_EXTERN_C_END
+#include <abyss/detail/epilog.h>
 
 #endif
