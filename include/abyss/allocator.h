@@ -34,13 +34,11 @@ abyss_error_t abyss_allocator_allocate(abyss_allocator_t *allocator,
 
 static inline
 void abyss_allocator_deallocate(abyss_allocator_t *allocator,
-                                void **ptr_ptr, size_t size, size_t alignment)
+                                void *ptr, size_t size, size_t alignment)
 {
-    if (!*ptr_ptr) { return; }
     typedef abyss_allocator_type_t type_t;
     type_t const *type = (type_t const *) allocator->type;
-    type->deallocate(allocator, *ptr_ptr, size, alignment);
-    *ptr_ptr = NULL;
+    type->deallocate(allocator, ptr, size, alignment);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

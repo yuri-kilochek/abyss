@@ -28,12 +28,11 @@ struct abyss_strand_type {
 };
 
 static inline
-void abyss_strand_release(abyss_strand_t **strand_ptr) {
-    if (!*strand_ptr) { return; }
+void abyss_strand_release(abyss_strand_t *strand) {
+    if (!strand) { return; }
     typedef abyss_strand_type_t type_t;
-    type_t const *type = (type_t const *) (*strand_ptr)->type;
-    type->release(*strand_ptr);
-    *strand_ptr = NULL;
+    type_t const *type = (type_t const *) strand->type;
+    type->release(strand);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

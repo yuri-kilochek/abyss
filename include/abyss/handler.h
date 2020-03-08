@@ -12,18 +12,17 @@
 typedef struct abyss_handler abyss_handler_t;
 
 struct abyss_handler {
-    abyss_allocator_t *allocator;
     void (*function)(void* context, abyss_error_t error);
     void *context;
+    abyss_allocator_t *allocator;
 };
 
-#define ABYSS_NULL_HANDLER (abyss_handler_t) {0}
+#define ABYSS_NULL_HANDLER (abyss_handler_t) {NULL}
 
 static inline
-void abyss_handler_invoke(abyss_handler_t *handler_ptr, abyss_error_t error) {
-    if (!handler_ptr->function) { return; }
-    handler_ptr->function(handler_ptr->context, error);
-    *handler_ptr = ABYSS_NULL_HANDLER;
+void abyss_handler_invoke(abyss_handler_t handler, abyss_error_t error) {
+    if (!handler.function) { return; }
+    handler.function(handler.context, error);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
