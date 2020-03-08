@@ -44,9 +44,9 @@ install(
     DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/"
               "${CMAKE_CURRENT_BINARY_DIR}/include/"
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-    PATTERN "abyss/private.h" EXCLUDE
-    PATTERN "abyss/private"   EXCLUDE
-    PATTERN "abyss/private/*" EXCLUDE
+    PATTERN "abyss/priv.h" EXCLUDE
+    PATTERN "abyss/priv"   EXCLUDE
+    PATTERN "abyss/priv/*" EXCLUDE
     PATTERN "*.in" EXCLUDE
 )
 install(TARGETS abyss EXPORT abyss
