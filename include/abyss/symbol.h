@@ -12,14 +12,16 @@
 
 typedef struct abyss_symbol abyss_symbol_t;
 
+enum { ABYSS_IMPL_SYMBOL_SIZE = 16 };
+
 struct abyss_symbol {
-    ABYSS_IMPL_ALIGN_AS(16)
-    unsigned char bytes[16];
+    ABYSS_IMPL_ALIGN_AS(ABYSS_IMPL_SYMBOL_SIZE)
+    unsigned char bytes[ABYSS_IMPL_SYMBOL_SIZE];
 };
 
 static inline
 int_fast8_t abyss_symbol_compare(abyss_symbol_t a, abyss_symbol_t b) {
-    int r = memcmp(a.bytes, b.bytes, 16);
+    int r = memcmp(a.bytes, b.bytes, ABYSS_IMPL_SYMBOL_SIZE);
     if (r < 0) { return -1; }
     if (r > 0) { return +1; }
     return 0;

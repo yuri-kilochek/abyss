@@ -7,29 +7,39 @@
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
+typedef struct abyss_timer_ops abyss_timer_ops_t;
 typedef struct abyss_timer abyss_timer_t;
-typedef struct abyss_timer_type abyss_timer_type_t;
 
-struct abyss_timer {
-    void const *const type;
+struct abyss_timer_ops {
+    void (*wait)(abyss_timer_t *self,
+                 abyss_nanoseconds_t duration,
+                 abyss_handler_t handler);
+
+    void (*cancel)(abyss_timer_t *self);
+
+    void (*release)(abyss_timer_t *self);
 };
 
-struct abyss_timer_type {
-    void (*wait)(abyss_timer_t *timer,
-                 abyss_nanoseconds_t duration,
-                 abyss_handler_t complete_handler,
-                 abyss_handler_t *cancel_handler_ptr);
+struct abyss_timer {
+    abyss_timer_ops_t const *const ops;
 };
 
 static inline
-void abyss_timer_wait(abyss_timer_t *timer,
+void abyss_timer_wait(abyss_timer_t *self,
                       abyss_nanoseconds_t duration,
-                      abyss_handler_t complete_handler,
-                      abyss_handler_t *cancel_handler_ptr)
-{
-    typedef abyss_timer_type_t type_t;
-    type_t const *type = (type_t const *) timer->type;
-    type->wait(timer, duration, complete_handler, cancel_handler_ptr);
+                      abyss_handler_t handler)
+{ self->ops->wait(self, duration, handler); }
+
+static inline
+void abyss_timer_cancel(abyss_timer_t *self) {
+    if (!self) { return; }
+    self->ops->cancel(self);
+}
+
+static inline
+void abyss_timer_release(abyss_timer_t *self) {
+    if (!self) { return; }
+    self->ops->release(self);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

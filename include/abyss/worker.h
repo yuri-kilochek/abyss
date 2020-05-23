@@ -7,29 +7,39 @@
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
+typedef struct abyss_worker_ops abyss_worker_ops_t;
 typedef struct abyss_worker abyss_worker_t;
-typedef struct abyss_worker_type abyss_worker_type_t;
 
-struct abyss_worker {
-    void const *const type;
+struct abyss_worker_ops {
+    void (*submit)(abyss_worker_t *self,
+                   abyss_work_t work,
+                   abyss_handler_t handler);
+
+    void (*cancel)(abyss_worker_t *self);
+
+    void (*release)(abyss_worker_t *self);
 };
 
-struct abyss_worker_type {
-    void (*submit)(abyss_worker_t *worker,
-                   abyss_work_t work,
-                   abyss_handler_t complete_handler,
-                   abyss_handler_t *cancel_handler_ptr);
+struct abyss_worker {
+    abyss_worker_ops_t const *const ops;
 };
 
 static inline
-void abyss_worker_submit(abyss_worker_t *worker,
+void abyss_worker_submit(abyss_worker_t *self,
                          abyss_work_t work,
-                         abyss_handler_t complete_handler,
-                         abyss_handler_t *cancel_handler_ptr)
-{
-    typedef abyss_worker_type_t type_t;
-    type_t const *type = (type_t const *) worker->type;
-    type->submit(worker, work, complete_handler, cancel_handler_ptr);
+                         abyss_handler_t handler)
+{ self->ops->submit(self, work, handler); }
+
+static inline
+void abyss_worker_cancel(abyss_worker_t *self) {
+    if (!self) { return; }
+    self->ops->cancel(self);
+}
+
+static inline
+void abyss_worker_release(abyss_worker_t *self) {
+    if (!self) { return; }
+    self->ops->release(self);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

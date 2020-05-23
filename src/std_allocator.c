@@ -5,18 +5,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 static
-abyss_error_t abyss_std_allocator_allocate(abyss_allocator_t *allocator,
-                                           void **ptr_ptr,
-                                           size_t size, size_t alignment)
+void *abyss_std_allocator_allocate(abyss_allocator_t *allocator,
+                                   size_t size, size_t alignment,
+                                   abyss_error_t *error_out)
 {
     (void) allocator;
 
     void *ptr;
     if (!(ptr = aligned_alloc(size, alignment))) {
-        return ABYSS_ERROR_OUT_OF_MEMORY;
+        *error_out = ABYSS_ERROR_OUT_OF_MEMORY;
     }
-    *ptr_ptr = ptr;
-    return ABYSS_ERROR_NONE;
+    return ptr;
 }
 
 static
@@ -32,7 +31,7 @@ void abyss_std_allocator_deallocate(abyss_allocator_t *allocator,
 
 static
 abyss_allocator_t abyss_std_allocator = {
-    .type = &(abyss_allocator_type_t const) {
+    .ops = &(abyss_allocator_ops_t const) {
         .allocate = abyss_std_allocator_allocate,
         .deallocate = abyss_std_allocator_deallocate,
     },

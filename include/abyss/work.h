@@ -1,8 +1,6 @@
 #ifndef ABYSS_IMPL_INCL_WORK_H
 #define ABYSS_IMPL_INCL_WORK_H
 
-#include <stddef.h>
-
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -13,12 +11,9 @@ struct abyss_work {
     void *context;
 };
 
-#define ABYSS_NULL_WORK (abyss_work_t) {NULL}
-
 static inline
-void abyss_work_do(abyss_work_t work) {
-    if (!work.function) { return; }
-    work.function(work.context);
+void abyss_work_do(abyss_work_t self) {
+    self.function(self.context);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
