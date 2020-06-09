@@ -1,12 +1,12 @@
-#ifndef ABYSS_IMPL_INCL_NANOSECONDS_H
-#define ABYSS_IMPL_INCL_NANOSECONDS_H
+#ifndef ABYSS_IMPL_INCL_MICROSECONDS_H
+#define ABYSS_IMPL_INCL_MICROSECONDS_H
 
 #include <stdint.h>
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef int_least64_t abyss_nanoseconds_t;
+typedef int_least64_t abyss_microseconds_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 #include <abyss/impl/epilog.h>

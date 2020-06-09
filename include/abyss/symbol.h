@@ -4,7 +4,7 @@
 #include <abyss/impl/api.h>
 #include <abyss/impl/align_as.h>
 
-#include <stdint.h>
+#include <limits.h>
 #include <string.h>
 
 #include <abyss/impl/prolog.h>
@@ -12,7 +12,7 @@
 
 typedef struct abyss_symbol abyss_symbol_t;
 
-enum { ABYSS_IMPL_SYMBOL_SIZE = 16 };
+enum { ABYSS_IMPL_SYMBOL_SIZE = (128 + CHAR_BIT - 1) / CHAR_BIT };
 
 struct abyss_symbol {
     ABYSS_IMPL_ALIGN_AS(ABYSS_IMPL_SYMBOL_SIZE)
@@ -20,11 +20,8 @@ struct abyss_symbol {
 };
 
 static inline
-int_fast8_t abyss_symbol_compare(abyss_symbol_t a, abyss_symbol_t b) {
-    int r = memcmp(a.bytes, b.bytes, ABYSS_IMPL_SYMBOL_SIZE);
-    if (r < 0) { return -1; }
-    if (r > 0) { return +1; }
-    return 0;
+int abyss_symbol_compare(abyss_symbol_t a, abyss_symbol_t b) {
+    return memcmp(a.bytes, b.bytes, ABYSS_IMPL_SYMBOL_SIZE);
 }
 
 ABYSS_IMPL_API

@@ -3,19 +3,18 @@
 
 #include <abyss/impl/api.h>
 
-#include <stdint.h>
+#include <limits.h>
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef enum abyss_error {
-    ABYSS_ERROR_NONE,
+    ABYSS_ERROR_NONE = 0,
 
-    ABYSS_ERROR_UNKNOWN,
     ABYSS_ERROR_OUT_OF_MEMORY,
     ABYSS_ERROR_CANCELED,
 
-    ABYSS_IMPL_ERROR_STRUT = INT_FAST8_MAX
+    ABYSS_ERROR_UNKNOWN = INT_MAX,
 } abyss_error_t;
 
 ABYSS_IMPL_API

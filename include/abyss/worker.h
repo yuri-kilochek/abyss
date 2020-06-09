@@ -1,8 +1,8 @@
 #ifndef ABYSS_IMPL_INCL_WORKER_H
 #define ABYSS_IMPL_INCL_WORKER_H
 
-#include <abyss/work.h>
-#include <abyss/handler.h>
+#include <abyss/error.h>
+#include <abyss/callback.h>
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
@@ -11,11 +11,12 @@ typedef struct abyss_worker_ops abyss_worker_ops_t;
 typedef struct abyss_worker abyss_worker_t;
 
 struct abyss_worker_ops {
-    void (*submit)(abyss_worker_t *self,
-                   abyss_work_t work,
-                   abyss_handler_t handler);
+    void (*post)(abyss_worker_t *self,
+                 abyss_callback_t task,
+                 abyss_error_t *error_out,
+                 abyss_callback_t callback);
 
-    void (*cancel)(abyss_worker_t *self);
+    void (*try_cancel)(abyss_worker_t *self);
 
     void (*release)(abyss_worker_t *self);
 };
@@ -25,15 +26,15 @@ struct abyss_worker {
 };
 
 static inline
-void abyss_worker_submit(abyss_worker_t *self,
-                         abyss_work_t work,
-                         abyss_handler_t handler)
-{ self->ops->submit(self, work, handler); }
+void abyss_worker_post(abyss_worker_t *self,
+                       abyss_callback_t task,
+                       abyss_error_t *error_out,
+                       abyss_callback_t callback)
+{ self->ops->post(self, task, error_out, callback); }
 
 static inline
-void abyss_worker_cancel(abyss_worker_t *self) {
-    if (!self) { return; }
-    self->ops->cancel(self);
+void abyss_worker_try_cancel(abyss_worker_t *self) {
+    self->ops->try_cancel(self);
 }
 
 static inline

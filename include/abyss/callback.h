@@ -1,18 +1,18 @@
-#ifndef ABYSS_IMPL_INCL_WORK_H
-#define ABYSS_IMPL_INCL_WORK_H
+#ifndef ABYSS_IMPL_INCL_CALLBACK_H
+#define ABYSS_IMPL_INCL_CALLBACK_H
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef struct abyss_work abyss_work_t;
+typedef struct abyss_callback abyss_callback_t;
 
-struct abyss_work {
+struct abyss_callback {
     void (*function)(void* context);
     void *context;
 };
 
 static inline
-void abyss_work_do(abyss_work_t self) {
+void abyss_callback_invoke(abyss_callback_t self) {
     self.function(self.context);
 }
 
