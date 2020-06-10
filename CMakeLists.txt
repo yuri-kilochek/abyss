@@ -32,7 +32,6 @@ target_include_directories(abyss PUBLIC
 target_sources(abyss PRIVATE
     src/version.c
     src/error.c
-    src/symbol.c
     src/std_allocator.c
 )
 
