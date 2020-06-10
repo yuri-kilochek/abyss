@@ -11,15 +11,15 @@
 typedef uint_least32_t abyss_version_t;
 
 #define ABYSS_COMPOSE_VERSION(major, minor, patch) \
-    (((major) & UINT32_C(0xFFF)) << UINT32_C(20) | \
-     ((minor) & UINT32_C(0x3FF)) << UINT32_C(10) | \
+    (((major) & UINT32_C(0xFFF)) << 20 | \
+     ((minor) & UINT32_C(0x3FF)) << 10 | \
      ((patch) & UINT32_C(0x3FF)))
 
 #define ABYSS_VERSION_GET_MAJOR(version) \
-    (((version) >> UINT32_C(20)) & UINT32_C(0xFFF))
+    (((version) >> 20) & UINT32_C(0xFFF))
 
 #define ABYSS_VERSION_GET_MINOR(version) \
-    (((version) >> UINT32_C(10)) & UINT32_C(0x3FF))
+    (((version) >> 10) & UINT32_C(0x3FF))
 
 #define ABYSS_VERSION_GET_PATCH(version) \
     ((version) & UINT32_C(0x3FF))
