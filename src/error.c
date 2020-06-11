@@ -14,9 +14,8 @@ char const *abyss_error_get_name(abyss_error_t error) {
     case ABYSS_ERROR_CANCELED:
         return "canceled";
 
-    case ABYSS_ERROR_UNKNOWN:
+    default:
         return "unknown";
     }
-    return NULL;
 }
 
