@@ -13,7 +13,7 @@ typedef struct abyss_strand abyss_strand_t;
 struct abyss_strand_ops {
     void (*post)(abyss_strand_t *self,
                  abyss_callback_t callback,
-                 abyss_error_t* error_out);
+                 abyss_error_t *error_out);
 
     void (*release)(abyss_strand_t *self);
 };
@@ -25,7 +25,7 @@ struct abyss_strand {
 static inline
 void abyss_strand_post(abyss_strand_t *self,
                        abyss_callback_t callback,
-                       abyss_error_t* error_out)
+                       abyss_error_t *error_out)
 { self->ops->post(self, callback, error_out); }
 
 static inline

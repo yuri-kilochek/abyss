@@ -7,7 +7,7 @@
 typedef struct abyss_callback abyss_callback_t;
 
 struct abyss_callback {
-    void (*function)(void* context);
+    void (*function)(void *context);
     void *context;
 };
 
