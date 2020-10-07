@@ -3,24 +3,23 @@
 
 #include <abyss/impl/os.h>
 
-#include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
-#if ABYSS_IMPL_USE_DYNAMIC && ABYSS_IMPL_BUILD_DYNAMIC
-    #error ABYSS_IMPL_USE_DYNAMIC and ABYSS_IMPL_BUILD_DYNAMIC must not \
-        be defined simultaneously.
+#if ABYSS_SHARED_IMPORT && ABYSS_SHARED_EXPORT
+    #error ABYSS_SHARED_IMPORT and ABYSS_SHARED_EXPORT must not be defined \
+        simultaneously.
 #endif
 
 #if ABYSS_IMPL_OS_WINDOWS
-    #if ABYSS_IMPL_USE_DYNAMIC
+    #if ABYSS_SHARED_IMPORT
         #define ABYSS_IMPL_API __declspec(dllimport)
-    #elif ABYSS_IMPL_BUILD_DYNAMIC
+    #elif ABYSS_SHARED_EXPORT
         #define ABYSS_IMPL_API __declspec(dllexport)
     #else
         #define ABYSS_IMPL_API 
     #endif
 #else
-    #if ABYSS_IMPL_BUILD_DYNAMIC
+    #if ABYSS_SHARED_EXPORT
         #define ABYSS_IMPL_API __attribute__((visibility("default")))
     #else
         #define ABYSS_IMPL_API
@@ -28,6 +27,5 @@
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/impl/epilog.h>
 
 #endif

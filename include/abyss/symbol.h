@@ -1,11 +1,10 @@
 #ifndef ABYSS_IMPL_INCL_SYMBOL_H
 #define ABYSS_IMPL_INCL_SYMBOL_H
 
-#include <abyss/impl/api.h>
-#include <abyss/impl/align_as.h>
 #include <abyss/byte.h>
+#include <abyss/impl/align_as.h>
+#include <abyss/impl/always_inline.h>
 
-#include <limits.h>
 #include <string.h>
 
 #include <abyss/impl/prolog.h>
@@ -20,7 +19,7 @@ struct abyss_symbol {
     abyss_byte_t bytes[ABYSS_IMPL_SYMBOL_SIZE];
 };
 
-static inline
+static inline ABYSS_IMPL_ALWAYS_INLINE
 int abyss_symbol_compare(abyss_symbol_t a, abyss_symbol_t b) {
     return memcmp(a.bytes, b.bytes, ABYSS_IMPL_SYMBOL_SIZE);
 }

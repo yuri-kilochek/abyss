@@ -3,7 +3,8 @@
 
 #include <abyss/error.h>
 #include <abyss/microseconds.h>
-#include <abyss/callback.h>
+#include <abyss/handler.h>
+#include <abyss/impl/always_inline.h>
 
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
@@ -13,9 +14,7 @@ typedef struct abyss_timer abyss_timer_t;
 
 struct abyss_timer_ops {
     void (*wait)(abyss_timer_t *self,
-                 abyss_microseconds_t duration,
-                 abyss_error_t *error_out,
-                 abyss_callback_t callback);
+        abyss_microseconds_t duration, abyss_handler_t handler);
 
     void (*try_cancel)(abyss_timer_t *self);
 
@@ -26,19 +25,17 @@ struct abyss_timer {
     abyss_timer_ops_t const *const ops;
 };
 
-static inline
+static inline ABYSS_IMPL_ALWAYS_INLINE
 void abyss_timer_wait(abyss_timer_t *self,
-                      abyss_microseconds_t duration,
-                      abyss_error_t *error_out,
-                      abyss_callback_t callback)
-{ self->ops->wait(self, duration, error_out, callback); }
+    abyss_microseconds_t duration, abyss_handler_t handler)
+{ self->ops->wait(self, duration, handler); }
 
-static inline
+static inline ABYSS_IMPL_ALWAYS_INLINE
 void abyss_timer_try_cancel(abyss_timer_t *self) {
     self->ops->try_cancel(self);
 }
 
-static inline
+static inline ABYSS_IMPL_ALWAYS_INLINE
 void abyss_timer_release(abyss_timer_t *self) {
     if (!self) { return; }
     self->ops->release(self);
