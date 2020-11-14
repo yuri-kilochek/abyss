@@ -53,7 +53,7 @@ void abyss_allocator_deallocate(abyss_allocator_t *self,
 
 #define ABYSS_ALLOCATOR_DEALLOCATE(self, count, ptr) \
     abyss_allocator_deallocate(self, \
-        (count) * sizeof(*(ptr)), ABYSS_DETAIL_ALIGNMENT_OF(*(ptr)), ptr)
+        (count) * sizeof(*(ptr)), ABYSS_IMPL_ALIGNMENT_OF(*(ptr)), ptr)
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
 void abyss_allocator_release(abyss_allocator_t *self) {
