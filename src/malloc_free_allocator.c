@@ -39,19 +39,13 @@ void abyss_malloc_free_allocator_deallocate(abyss_allocator_t *allocator,
 }
 
 static
-void abyss_malloc_free_allocator_release(abyss_allocator_t *allocator) {
-    (void) allocator;
-}
-
-static
 abyss_allocator_t abyss_malloc_free_allocator = {
     .ops = &(abyss_allocator_ops_t const) {
         .allocate = abyss_malloc_free_allocator_allocate,
         .deallocate = abyss_malloc_free_allocator_deallocate,
-        .release = abyss_malloc_free_allocator_release,
     },
 };
 
-abyss_allocator_t *abyss_acquire_malloc_free_allocator(void) {
+abyss_allocator_t *abyss_get_malloc_free_allocator(void) {
     return &abyss_malloc_free_allocator;
 }

@@ -19,9 +19,6 @@ typedef struct abyss_platform_ops abyss_platform_ops_t;
 typedef struct abyss_platform abyss_platform_t;
 
 struct abyss_platform_ops {
-    abyss_error_t (*acquire_allocator)(abyss_platform_t *self,
-        abyss_allocator_t **allocator_out);
-
     abyss_error_t (*acquire_task)(abyss_platform_t *self,
         abyss_allocator_t *allocator,
         size_t context_size, size_t context_alignment,
@@ -39,12 +36,9 @@ struct abyss_platform_ops {
 
 struct abyss_platform {
     abyss_platform_ops_t const *const ops;
-};
 
-static inline ABYSS_IMPL_ALWAYS_INLINE
-abyss_error_t abyss_platform_acquire_allocator(abyss_platform_t *self,
-    abyss_allocator_t **allocator_out)
-{ return self->ops->acquire_allocator(self, allocator_out); }
+    abyss_allocator_t *const allocator;
+};
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
 abyss_error_t abyss_platform_acquire_task(abyss_platform_t *self,
