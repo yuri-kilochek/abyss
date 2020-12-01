@@ -24,7 +24,7 @@ target_include_directories(abyss PUBLIC
 
 target_sources(abyss PRIVATE
     src/lay_out.c
-    src/error.c
+    src/basic_error.c
     src/platform.c
     src/malloc_free_allocator.c
 )

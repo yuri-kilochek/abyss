@@ -2,21 +2,23 @@
 
 #include <stdlib.h>
 
+#include <abyss/basic_error.h>
+
 ///////////////////////////////////////////////////////////////////////////////
 
 static
-abyss_error_t abyss_malloc_free_allocator_allocate(
-    abyss_allocator_t *allocator,
+abyss_error_t *abyss_malloc_free_allocator_allocate(
+    abyss_allocator_t *self,
     size_t size, size_t alignment, void **ptr_out)
 {
-    (void) allocator;
+    (void) self;
 
     void *ptr = NULL;
 
-    abyss_error_t error = ABYSS_ERROR_NONE;
+    abyss_error_t *error = NULL;
 
     if (!(ptr = aligned_alloc(size, alignment))) {
-        error = ABYSS_ERROR_OUT_OF_MEMORY;
+        error = abyss_acquire_basic_error(ABYSS_ERROR_SEMANTIC_OUT_OF_MEMORY);
         goto out;
     }
 
@@ -28,10 +30,10 @@ out:
 }
 
 static
-void abyss_malloc_free_allocator_deallocate(abyss_allocator_t *allocator,
+void abyss_malloc_free_allocator_deallocate(abyss_allocator_t *self,
     size_t size, size_t alignment, void *ptr)
 {
-    (void) allocator;
+    (void) self;
     (void) size;
     (void) alignment;
 
@@ -40,7 +42,7 @@ void abyss_malloc_free_allocator_deallocate(abyss_allocator_t *allocator,
 
 static
 abyss_allocator_t abyss_malloc_free_allocator = {
-    .ops = &(abyss_allocator_ops_t const) {
+    .type = &(abyss_allocator_type_t const) {
         .allocate = abyss_malloc_free_allocator_allocate,
         .deallocate = abyss_malloc_free_allocator_deallocate,
     },

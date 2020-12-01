@@ -8,36 +8,36 @@
 #include <abyss/impl/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
-typedef struct abyss_worker_ops abyss_worker_ops_t;
+typedef struct abyss_worker_type abyss_worker_type_t;
 typedef struct abyss_worker abyss_worker_t;
 
-struct abyss_worker_ops {
+struct abyss_worker_type {
+    void (*release)(abyss_worker_t *self);
+
     void (*enqueue)(abyss_worker_t *self,
         abyss_task_t task, abyss_handler_t handler);
 
     void (*try_cancel)(abyss_worker_t *self);
-
-    void (*release)(abyss_worker_t *self);
 };
 
 struct abyss_worker {
-    abyss_worker_ops_t const *const ops;
+    abyss_worker_type_t const *const type;
 };
-
-static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_worker_enqueue(abyss_worker_t *self,
-    abyss_task_t task, abyss_handler_t handler)
-{ self->ops->enqueue(self, task, handler); }
-
-static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_worker_try_cancel(abyss_worker_t *self) {
-    self->ops->try_cancel(self);
-}
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
 void abyss_worker_release(abyss_worker_t *self) {
     if (!self) { return; }
-    self->ops->release(self);
+    self->type->release(self);
+}
+
+static inline ABYSS_IMPL_ALWAYS_INLINE
+void abyss_worker_enqueue(abyss_worker_t *self,
+    abyss_task_t task, abyss_handler_t handler)
+{ self->type->enqueue(self, task, handler); }
+
+static inline ABYSS_IMPL_ALWAYS_INLINE
+void abyss_worker_try_cancel(abyss_worker_t *self) {
+    self->type->try_cancel(self);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

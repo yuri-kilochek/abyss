@@ -6,14 +6,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-abyss_error_t abyss_platform_acquire_handler(abyss_platform_t *self,
+abyss_error_t *abyss_platform_acquire_handler(abyss_platform_t *self,
     abyss_allocator_t *allocator,
     size_t context_size, size_t context_alignment,
     abyss_handler_t **handler_out)
 {
     abyss_task_t *task = NULL;
 
-    abyss_error_t error = ABYSS_ERROR_NONE;
+    abyss_error_t *error = NULL;
 
     size_t offsets[2];
     size_t task_context_size;
