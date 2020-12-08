@@ -6,7 +6,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-abyss_error_t *abyss_platform_acquire_handler(abyss_platform_t *self,
+abyss_error_t *abyss_platform_new_handler(abyss_platform_t *self,
     abyss_allocator_t *allocator,
     size_t context_size, size_t context_alignment,
     abyss_handler_t **handler_out)
@@ -26,7 +26,7 @@ abyss_error_t *abyss_platform_acquire_handler(abyss_platform_t *self,
     size_t handler_offset = offsets[0];
     size_t context_offset = offsets[1];
 
-    if ((error = abyss_platform_acquire_task(self,
+    if ((error = abyss_platform_new_task(self,
         allocator, task_context_size, task_context_alignment, &task)))
     { goto out; }
     abyss_handler_t *handler =
@@ -38,7 +38,7 @@ abyss_error_t *abyss_platform_acquire_handler(abyss_platform_t *self,
 
     *handler_out = handler; task = NULL;
 out:
-    abyss_task_release(task);
+    abyss_task_delete(task);
 
     return error;
 }

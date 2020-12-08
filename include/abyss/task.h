@@ -10,7 +10,7 @@ typedef struct abyss_task_type abyss_task_type_t;
 typedef struct abyss_task abyss_task_t;
 
 struct abyss_task_type {
-    void (*release)(abyss_task_t *self);
+    void (*delete_)(abyss_task_t *self);
 };
 
 struct abyss_task {
@@ -21,9 +21,9 @@ struct abyss_task {
 };
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_task_release(abyss_task_t *self) {
+void abyss_task_delete(abyss_task_t *self) {
     if (!self) { return; }
-    self->type->release(self);
+    self->type->delete_(self);
 }
 
 static inline ABYSS_IMPL_ALWAYS_INLINE

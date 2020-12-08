@@ -22,7 +22,7 @@ typedef enum abyss_error_semantic {
 } abyss_error_semantic_t;
 
 struct abyss_error_type {
-    void (*release)(abyss_error_t *self);
+    void (*delete_)(abyss_error_t *self);
     abyss_error_semantic_t (*get_semantic)(abyss_error_t const *self);
     char const *(*get_message)(abyss_error_t const *self);
 };
@@ -32,9 +32,9 @@ struct abyss_error {
 };
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_error_release(abyss_error_t *self) {
+void abyss_error_delete(abyss_error_t *self) {
     if (!self) { return; }
-    self->type->release(self);
+    self->type->delete_(self);
 }
 
 static inline ABYSS_IMPL_ALWAYS_INLINE

@@ -29,7 +29,7 @@ abyss_basic_error_t abyss_basic_errors[] = {
 };
 
 static
-void abyss_basic_error_release(abyss_error_t *base)
+void abyss_basic_error_delete(abyss_error_t *base)
 {
     (void) base;
 }
@@ -50,12 +50,12 @@ char const *abyss_basic_error_get_message(abyss_error_t const *base) {
 
 static
 abyss_error_type_t const abyss_basic_error_type = {
-    .release = abyss_basic_error_release,
+    .delete_ = abyss_basic_error_delete,
     .get_semantic = abyss_basic_error_get_semantic,
     .get_message = abyss_basic_error_get_message,
 };
 
-abyss_error_t *abyss_acquire_basic_error(abyss_error_semantic_t semantic) {
+abyss_error_t *abyss_new_basic_error(abyss_error_semantic_t semantic) {
     return &abyss_basic_errors[semantic - 1].base;
 }
 

@@ -11,7 +11,7 @@ typedef struct abyss_strand_type abyss_strand_type_t;
 typedef struct abyss_strand abyss_strand_t;
 
 struct abyss_strand_type {
-    void (*release)(abyss_strand_t *self);
+    void (*delete_)(abyss_strand_t *self);
     void (*enqueue)(abyss_strand_t *self, abyss_task_t *task);
 };
 
@@ -20,9 +20,9 @@ struct abyss_strand {
 };
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_strand_release(abyss_strand_t *self) {
+void abyss_strand_delete(abyss_strand_t *self) {
     if (!self) { return; }
-    self->type->release(self);
+    self->type->delete_(self);
 }
 
 static inline ABYSS_IMPL_ALWAYS_INLINE

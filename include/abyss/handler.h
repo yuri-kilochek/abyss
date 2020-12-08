@@ -19,9 +19,9 @@ struct abyss_handler {
 };
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_handler_release(abyss_handler_t *self) {
+void abyss_handler_delete(abyss_handler_t *self) {
     if (!self) { return; }
-    abyss_task_release(self->task);
+    abyss_task_delete(self->task);
 }
 
 static inline ABYSS_IMPL_ALWAYS_INLINE

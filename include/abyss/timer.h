@@ -13,7 +13,7 @@ typedef struct abyss_timer_type abyss_timer_type_t;
 typedef struct abyss_timer abyss_timer_t;
 
 struct abyss_timer_type {
-    void (*release)(abyss_timer_t *self);
+    void (*delete_)(abyss_timer_t *self);
 
     void (*wait)(abyss_timer_t *self,
         abyss_microseconds_t duration, abyss_handler_t handler);
@@ -26,9 +26,9 @@ struct abyss_timer {
 };
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_timer_release(abyss_timer_t *self) {
+void abyss_timer_delete(abyss_timer_t *self) {
     if (!self) { return; }
-    self->type->release(self);
+    self->type->delete_(self);
 }
 
 static inline ABYSS_IMPL_ALWAYS_INLINE

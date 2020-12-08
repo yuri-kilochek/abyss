@@ -12,7 +12,7 @@ typedef struct abyss_worker_type abyss_worker_type_t;
 typedef struct abyss_worker abyss_worker_t;
 
 struct abyss_worker_type {
-    void (*release)(abyss_worker_t *self);
+    void (*delete_)(abyss_worker_t *self);
 
     void (*enqueue)(abyss_worker_t *self,
         abyss_task_t task, abyss_handler_t handler);
@@ -25,9 +25,9 @@ struct abyss_worker {
 };
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
-void abyss_worker_release(abyss_worker_t *self) {
+void abyss_worker_delete(abyss_worker_t *self) {
     if (!self) { return; }
-    self->type->release(self);
+    self->type->delete_(self);
 }
 
 static inline ABYSS_IMPL_ALWAYS_INLINE
