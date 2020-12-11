@@ -1,12 +1,12 @@
-#ifndef ABYSS_IMPL_INCL_BYTE_H
-#define ABYSS_IMPL_INCL_BYTE_H
+#ifndef ABYSS_DETAIL_INCLUDE_BYTE_H
+#define ABYSS_DETAIL_INCLUDE_BYTE_H
 
-#include <abyss/impl/prolog.h>
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef unsigned char abyss_byte_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/impl/epilog.h>
+#include <abyss/detail/epilog.h>
 
 #endif

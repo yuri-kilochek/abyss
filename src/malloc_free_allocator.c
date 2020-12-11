@@ -18,7 +18,7 @@ abyss_error_t *abyss_malloc_free_allocator_allocate(
     abyss_error_t *error = NULL;
 
     if (!(ptr = aligned_alloc(size, alignment))) {
-        error = abyss_acquire_basic_error(ABYSS_ERROR_SEMANTIC_OUT_OF_MEMORY);
+        error = abyss_new_basic_error(ABYSS_ERROR_SEMANTIC_OUT_OF_MEMORY);
         goto out;
     }
 

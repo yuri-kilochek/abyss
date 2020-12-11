@@ -1,15 +1,15 @@
-#ifndef ABYSS_IMPL_INCL_BASIC_ERROR_H
-#define ABYSS_IMPL_INCL_BASIC_ERROR_H
+#ifndef ABYSS_DETAIL_INCLUDE_BASIC_ERROR_H
+#define ABYSS_DETAIL_INCLUDE_BASIC_ERROR_H
 
 #include <abyss/error.h>
 
-#include <abyss/impl/prolog.h>
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
-ABYSS_IMPL_API
+ABYSS_DETAIL_API
 abyss_error_t *abyss_new_basic_error(abyss_error_semantic_t semantic);
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/impl/epilog.h>
+#include <abyss/detail/epilog.h>
 
 #endif

@@ -5,7 +5,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void abyss_impl_lay_out(size_t count,
+void abyss_detail_lay_out(size_t count,
     size_t const *sizes, size_t const *alignments, size_t *restrict offsets,
     size_t *restrict total_size_out, size_t *restrict total_alignment_out)
 {
@@ -13,10 +13,10 @@ void abyss_impl_lay_out(size_t count,
     size_t total_alignment = 0;
     for (size_t i = 0; i < count; ++i) {
         size_t alignment = alignments[i];
-        size_t offset = ABYSS_IMPL_ROUND_UP(total_size, alignment);
+        size_t offset = ABYSS_DETAIL_ROUND_UP(total_size, alignment);
         offsets[i] = offset;
         total_size = offset + sizes[i];
-        total_alignment = ABYSS_IMPL_MAX(total_alignment, alignment);
+        total_alignment = ABYSS_DETAIL_MAX(total_alignment, alignment);
     }
     *total_size_out = total_size;
     *total_alignment_out = total_alignment;

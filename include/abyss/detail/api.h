@@ -1,7 +1,7 @@
-#ifndef ABYSS_IMPL_INCL_IMPL_API_H
-#define ABYSS_IMPL_INCL_IMPL_API_H
+#ifndef ABYSS_DETAIL_INCLUDE_DETAIL_API_H
+#define ABYSS_DETAIL_INCLUDE_DETAIL_API_H
 
-#include <abyss/impl/os.h>
+#include <abyss/detail/os.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -10,19 +10,19 @@
         simultaneously.
 #endif
 
-#if ABYSS_IMPL_OS_WINDOWS
+#if ABYSS_DETAIL_OS_WINDOWS
     #if ABYSS_SHARED_IMPORT
-        #define ABYSS_IMPL_API __declspec(dllimport)
+        #define ABYSS_DETAIL_API __declspec(dllimport)
     #elif ABYSS_SHARED_EXPORT
-        #define ABYSS_IMPL_API __declspec(dllexport)
+        #define ABYSS_DETAIL_API __declspec(dllexport)
     #else
-        #define ABYSS_IMPL_API 
+        #define ABYSS_DETAIL_API 
     #endif
 #else
     #if ABYSS_SHARED_EXPORT
-        #define ABYSS_IMPL_API __attribute__((visibility("default")))
+        #define ABYSS_DETAIL_API __attribute__((visibility("default")))
     #else
-        #define ABYSS_IMPL_API
+        #define ABYSS_DETAIL_API
     #endif
 #endif
 

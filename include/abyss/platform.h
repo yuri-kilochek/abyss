@@ -1,5 +1,5 @@
-#ifndef ABYSS_IMPL_INCL_PLATFORM_H
-#define ABYSS_IMPL_INCL_PLATFORM_H
+#ifndef ABYSS_DETAIL_INCLUDE_PLATFORM_H
+#define ABYSS_DETAIL_INCLUDE_PLATFORM_H
 
 #include <stddef.h>
 
@@ -10,9 +10,9 @@
 #include <abyss/strand.h>
 #include <abyss/timer.h>
 #include <abyss/worker.h>
-#include <abyss/impl/always_inline.h>
+#include <abyss/detail/always_inline.h>
 
-#include <abyss/impl/prolog.h>
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct abyss_platform_type abyss_platform_type_t;
@@ -40,7 +40,7 @@ struct abyss_platform {
     abyss_allocator_t *allocator;
 };
 
-static inline ABYSS_IMPL_ALWAYS_INLINE
+static inline ABYSS_DETAIL_ALWAYS_INLINE
 abyss_error_t *abyss_platform_new_task(abyss_platform_t *self,
     abyss_allocator_t *allocator,
     size_t context_size, size_t context_alignment,
@@ -50,28 +50,28 @@ abyss_error_t *abyss_platform_new_task(abyss_platform_t *self,
         allocator, context_size, context_alignment, task_out);
 }
 
-ABYSS_IMPL_API
+ABYSS_DETAIL_API
 abyss_error_t *abyss_platform_new_handler(abyss_platform_t *self,
     abyss_allocator_t *allocator,
     size_t context_size, size_t context_alignment,
     abyss_handler_t **handler_out);
 
-static inline ABYSS_IMPL_ALWAYS_INLINE
+static inline ABYSS_DETAIL_ALWAYS_INLINE
 abyss_error_t *abyss_platform_new_strand(abyss_platform_t *self,
     abyss_allocator_t *allocator, abyss_strand_t **strand_out)
 { return self->type->new_strand(self, allocator, strand_out); }
 
-static inline ABYSS_IMPL_ALWAYS_INLINE
+static inline ABYSS_DETAIL_ALWAYS_INLINE
 abyss_error_t *abyss_platform_new_timer(abyss_platform_t *self,
     abyss_allocator_t *allocator, abyss_timer_t **timer_out)
 { return self->type->new_timer(self, allocator, timer_out); }
 
-static inline ABYSS_IMPL_ALWAYS_INLINE
+static inline ABYSS_DETAIL_ALWAYS_INLINE
 abyss_error_t *abyss_platform_new_worker(abyss_platform_t *self,
     abyss_allocator_t *allocator, abyss_worker_t **worker_out)
 { return self->type->new_worker(self, allocator, worker_out); }
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/impl/epilog.h>
+#include <abyss/detail/epilog.h>
 
 #endif

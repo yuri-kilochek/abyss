@@ -1,14 +1,14 @@
-#ifndef ABYSS_IMPL_INCL_MICROSECONDS_H
-#define ABYSS_IMPL_INCL_MICROSECONDS_H
+#ifndef ABYSS_DETAIL_INCLUDE_MICROSECONDS_H
+#define ABYSS_DETAIL_INCLUDE_MICROSECONDS_H
 
 #include <stdint.h>
 
-#include <abyss/impl/prolog.h>
+#include <abyss/detail/prolog.h>
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef int64_t abyss_microseconds_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-#include <abyss/impl/epilog.h>
+#include <abyss/detail/epilog.h>
 
 #endif

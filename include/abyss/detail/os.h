@@ -1,5 +1,5 @@
-#ifndef ABYSS_IMPL_INCL_IMPL_OS_H
-#define ABYSS_IMPL_INCL_IMPL_OS_H
+#ifndef ABYSS_DETAIL_INCLUDE_DETAIL_OS_H
+#define ABYSS_DETAIL_INCLUDE_DETAIL_OS_H
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -8,7 +8,7 @@
  || defined(__WIN32__) \
  || defined(__TOS_WIN__) \
  || defined(__WINDOWS__)
-    #define ABYSS_IMPL_OS_WINDOWS 1
+    #define ABYSS_DETAIL_OS_WINDOWS 1
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////

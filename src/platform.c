@@ -18,7 +18,7 @@ abyss_error_t *abyss_platform_new_handler(abyss_platform_t *self,
     size_t offsets[2];
     size_t task_context_size;
     size_t task_context_alignment;
-    abyss_impl_lay_out(2,
+    abyss_detail_lay_out(2,
         (size_t[]) { sizeof(abyss_handler_t), context_size },
         (size_t[]) { alignof(abyss_handler_t), context_alignment },
         offsets,

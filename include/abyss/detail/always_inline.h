@@ -1,10 +1,10 @@
-#ifndef ABYSS_IMPL_INCL_IMPL_ALWAYS_INLINE_H
-#define ABYSS_IMPL_INCL_IMPL_ALWAYS_INLINE_H
+#ifndef ABYSS_DETAIL_INCLUDE_DETAIL_ALWAYS_INLINE_H
+#define ABYSS_DETAIL_INCLUDE_DETAIL_ALWAYS_INLINE_H
 
 ///////////////////////////////////////////////////////////////////////////////
 
 // TODO
-#define ABYSS_IMPL_ALWAYS_INLINE
+#define ABYSS_DETAIL_ALWAYS_INLINE
 
 ///////////////////////////////////////////////////////////////////////////////
 
