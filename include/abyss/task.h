@@ -16,7 +16,7 @@ struct abyss_task_type {
 struct abyss_task {
     abyss_task_type_t const *const type;
 
-    void (*execute)(abyss_task_t* task);
+    void (*function)(abyss_task_t* task);
     void *context;
 };
 
@@ -28,7 +28,7 @@ void abyss_task_delete(abyss_task_t *self) {
 
 static inline ABYSS_DETAIL_ALWAYS_INLINE
 void abyss_task_execute(abyss_task_t *self) {
-    self->execute(self);
+    self->function(self);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

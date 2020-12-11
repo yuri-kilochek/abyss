@@ -14,7 +14,7 @@ struct abyss_handler {
     abyss_task_t *task;
     abyss_strand_t *strand;
     abyss_error_t *error;
-    void (*execute)(abyss_handler_t *handler);
+    void (*function)(abyss_handler_t *handler);
     void *context;
 };
 
