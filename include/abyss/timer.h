@@ -16,7 +16,7 @@ struct abyss_timer_type {
     void (*delete_)(abyss_timer_t *self);
 
     void (*wait)(abyss_timer_t *self,
-        abyss_microseconds_t duration, abyss_handler_t handler);
+        abyss_microseconds_t duration, abyss_handler_t *handler);
 
     void (*try_cancel)(abyss_timer_t *self);
 };
@@ -33,7 +33,7 @@ void abyss_timer_delete(abyss_timer_t *self) {
 
 static inline ABYSS_DETAIL_ALWAYS_INLINE
 void abyss_timer_wait(abyss_timer_t *self,
-    abyss_microseconds_t duration, abyss_handler_t handler)
+    abyss_microseconds_t duration, abyss_handler_t *handler)
 { self->type->wait(self, duration, handler); }
 
 static inline ABYSS_DETAIL_ALWAYS_INLINE

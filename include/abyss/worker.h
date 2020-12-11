@@ -15,7 +15,7 @@ struct abyss_worker_type {
     void (*delete_)(abyss_worker_t *self);
 
     void (*enqueue)(abyss_worker_t *self,
-        abyss_task_t task, abyss_handler_t handler);
+        abyss_task_t task, abyss_handler_t *handler);
 
     void (*try_cancel)(abyss_worker_t *self);
 };
@@ -32,7 +32,7 @@ void abyss_worker_delete(abyss_worker_t *self) {
 
 static inline ABYSS_DETAIL_ALWAYS_INLINE
 void abyss_worker_enqueue(abyss_worker_t *self,
-    abyss_task_t task, abyss_handler_t handler)
+    abyss_task_t task, abyss_handler_t *handler)
 { self->type->enqueue(self, task, handler); }
 
 static inline ABYSS_DETAIL_ALWAYS_INLINE
